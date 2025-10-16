@@ -1,36 +1,24 @@
 # Mouse Tracking for Reading (MoTR)
-This repository contains necessary materials for implementing a Mouse tracking for Reading (MoTR) experiment, and for post-processing MoTR data to derive word-by-word reading measures. Additionally, the repository contains materials and scripts used in the two experiments reported in "Mouse Tracking for Reading (MoTR): A New Naturalistic Incremental Processing Measurement Tool".
+This repository contains a lightweight version of "Mouse Tracking for Reading (MoTR)".
+There are three experiments:
+1. A demo experiment of naturalistic reading using Provo corpus (Luke & Christianson, 2018). It is in the folder `multilingual_motr/demo-provo`.
 
-The directory has the following structure:
+- This experiment use a wider screen so that longer sentences can be displayed in one line. Please make sure your screen is wide enough (e.g. a laptop screen). 
 
-```
-└──motr
-      ├── run_motr_in_magpie
-          contains files necessary to implement MoTR in Magpie
-      └── post_processing
-          Constains postprocessing scripts to turn raw MoTR data into reading time measurements
-└── experiments
-      ├── attachment
-          contains data necessary to run our attachment ambiguity experiments
-      ├── provo
-          contains data necessary to run our provo experiments
-      └── scripts
-          contains analysis scripts and images
-```
-
-## MoTR
+2. An word masking experiment to study the information distribution in English (Ding et al., 2025). It is in the folder `multilingual_motr/en`.
+3. An word masking experiment to study the information distribution in Chinese (Ding et al., 2025). It is in the folder `multilingual_motr/zh`.
 
 ### Demo
-
-We provide an interactive demonstration of MoTR and at the end of the experiment, you could download your personal reading data. Welcome to try it out by clicking on this link:
-
-https://wilcoxeg.github.io/MoTR/MoTR/run_motr_in_magpie/demo/
+Provo demo experiment: [link](https://cuierd.github.io/MoTR-lightweight/multilingual_motr/demo-provo/).
+Chinese word masking experiment: [link](https://cuierd.github.io/MoTR-lightweight/multilingual_motr/zh/).
+English word masking experiment: [link](https://cuierd.github.io/MoTR-lightweight/multilingual_motr/en/).
 
 ### Running MoTR in Magpie
 
 #### Contents
-- `provo` contains the  codes (in subdirectory `src`) and the trial data (in subdirectory `trials`) for running a MoTR experiment for Provo.
-- `attachment` contains the codes (in subdirectory `src`) and the trial data (in subdirectory `trials`) for running a MoTR experiment for attachment preference in English.
+- `demo-provo` contains the  codes (in subdirectory `src`) and the trial data (in subdirectory `trials`) for running a MoTR experiment for Provo.
+- `zh` contains the codes (in subdirectory `src`) and the trial data (in subdirectory `trials`) for running a MoTR experiment for Chinese word masking.
+- `en` contains the codes (in subdirectory `src`) and the trial data (in subdirectory `trials`) for running a MoTR experiment for English word masking.
 
 #### Workflow for Running a Basic MoTR Trial
 
@@ -44,9 +32,11 @@ The following workflow should enable you to run a MoTR experiment, locally, in y
 - Click either of the links shown in the terminal starting with "-Local:" or "-Network:".
 - Enjoy!
 
-For more information about how to deploy Magpie experiments onto the web, and run them with human participants, please see the [Magpie documentation](https://magpie-experiments.org/). 
+For more information about how to deploy Magpie experiments onto the web, and run them with human participants, please see the [Magpie documentation](https://magpie-experiments.org/). A simple workflow is in folder `resources/Workflow-MoTR-with-notes.pdf`.
 
 ### Post Processing
+
+Please note that you need to adapt this pipeline to your own experiment.
 
 #### Contents
 - `postprocessing.py` is the main script to run which will take the command line interface arguments and post process the MoTR data.
@@ -97,77 +87,4 @@ python3 postprocessing.py --in_folder data2 --trial_file trials/provo_items.tsv 
 ```
 
 This call takes a folder which can contain multiple raw MoTR data files called `data2` and the trial data file `provo_items.tsv` in the folder `trials`, output the divided raw data files, files for fixation sequences, files for reading measures into `./divide_by_reader`,`./fixations`, `./reading_metrics`, `../stimuli`, respectively. It will extract fixations ranging from 200 ms to 3000 ms.
-
-## Experiments
-
-### Provo
-
-#### Data
-
-- `provo_items.tsv` contains the materials for this experiment, i.e. the provo corpus broken down into its individual sections (one per row). This file also includes the comprehension questions, with their associated correct and incorreect responses.
-
-- `provo_stats.tsv` contains by-word statistics for the provo corpus, including surprisal and frequency.
-
- - `provo_eyetracking.tsv` contains the raw eyetracking data for the provo corpus.
-
-- `/provo_f160/` contains the output of the postprocessing script, with results for each participant in separate files. For this file 160 milliseconds is the minimum threshold for a fixation duration.
-
-- `gamma_provo_surprisal_bayesian_feb25.csv` and `gamma_provo_surprisal_bayesian_feb25_linear.csv` contains the data for the replication of Smith and Levy (2013), generated from `surprial_motr_link_analysis.Rmd`. 
-
-- To access the raw data from this experiment, please [click on this OSF link](https://osf.io/4g7pr/?view_only=d628c9fda891434bb9ad4aa13b5d21ab).
-
-#### Scripts
-
-- `correlation_analysis.Rmd` and `correlation_analysis_BSPR.Rmd` are R codes to run the Bayesian correlation analysis, both to correlate eye tracking data with MoTR data/BSPR data, as well as to correlate each with various word-level properties (length, frequency, surprisal).
-
-- `ranked_correlation_fpr_analysis.Rmd` is R code to run the ranked correlation analysis we use to compare MoTR and BSPR first pass regression data with eye tracking first pass regression data.
-
-- `surprial_motr_link_analysis.Rmd` is R code to run the cross methodological replication of Smith and Levy (2013), and the linear vs. non-linear model comparison, looking at the functional relationship between by-word MoTR reading times and by-word surprisal values.
-
-- `fixation_saccade_analysis.Rmd` is R code to analyze the reading strategies people have when using MoTR. 
-
-- `analysis_provo.Rmd` is R code for basic data exploration and visualization of the MoTR provo data.
-
-
-##### Bayesian Models
-
-- This folder contains fitted models from the various scripts in its parent directory. 
-
-- `bayesian_models_correlation` contains the fitted models for correlations for MoTR and eye tracking, MoTR and word level statistical properties. Since the models' size is big, we have moved it to [OSF](https://osf.io/4g7pr/?view_only=d628c9fda891434bb9ad4aa13b5d21ab).
-
-- `bayesian_models_surprisal` contains the fitted models for reading time slow down due to surprisal effects analysis, which has been moved to [OSF](https://osf.io/4g7pr/?view_only=d628c9fda891434bb9ad4aa13b5d21ab).
-
-##### Stan Models
-
-- This folder contains the stan scripts used in its parent directory to model the correlations.
-
-#### Visualizations
-
-- Contains figures for the paper from the Provo experiment.
-
-### Attachment
-
-#### Data
-
-- `/items/` contains the experimental items. These are broken down into our three sub-experiments, and the practice items which were shared across sub experiments. Each `.tsv` file in this directory contains experiment ID, condition ID, and text of each item, along with comprehension questions and the correct response.
-
-- `/results_f160/` contains the output of the postprocessing script, with results for each participant in seperate files. For this file 160 milliseconds is the minimum threshold for a fixation duration.
-
-- `a_maze.rds`, `g_maze.rds`, and `spr.rds` contain maze and self-paced reading data from Boyce et al., (2020), which we compare to MoTR data. Files were downloaded [from this repository.](https://github.com/vboyce/Maze/tree/master/experiment/Data/Processed).
-
-- `witzel_eyetr_data` is a tabularized machine-readable version of the data presented in Tables 1-6 of Witzel et al., (2012), which reports eyetracking data for these same materials.
-
-- `stats_df.csv` stores the parameters from running lmer models and are used for power analysis. `power_df.csv` contains statistical powers of models and settings used in our experiment; `power_df_simulation.csv` is the file of statistical powers of varying participants numbers for different methods. They are all generated from `analysis_attachment_bayesian.Rmd` power analysis chunks.
-
-
-#### Scripts
-
-- `analysis_attachment_bayesian.Rmd` is R code to run Bayesian hierarchical models to study the by-item differences between high attachment and low attachment conditions.
-
-- To access the Bayesian models from this experiment, please [click on this OSF link](https://osf.io/4g7pr/?view_only=d628c9fda891434bb9ad4aa13b5d21ab).
-
-
-#### Visualizations
-
-- Contains figures for the paper from the attachment experiment.
 
