@@ -5,8 +5,8 @@ There are three experiments:
 
 - This experiment use a wider screen so that longer sentences can be displayed in one line. Please make sure your screen is wide enough (e.g. a laptop screen). 
 
-2. An word masking experiment to study the information distribution in English (Ding et al., 2025). It is in the folder `multilingual_motr/en`.
-3. An word masking experiment to study the information distribution in Chinese (Ding et al., 2025). It is in the folder `multilingual_motr/zh`.
+2. An word masking experiment to study the information distribution in English (Ding et al., 2025) (https://arxiv.org/pdf/2509.17047) . It is in the folder `multilingual_motr/en`.
+3. An word masking experiment to study the information distribution in Chinese (Ding et al., 2025) (https://arxiv.org/pdf/2509.17047). It is in the folder `multilingual_motr/zh`.
 
 ### Demo
 Provo demo experiment: [link](https://cuierd.github.io/MoTR-lightweight/multilingual_motr/demo-provo/).
