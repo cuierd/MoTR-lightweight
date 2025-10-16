@@ -10,7 +10,7 @@
         }
       }">
         <!-- <WelcomeScreen /> -->
-        <div style="width: 40em; margin: auto;">
+        <div style="width: 90%; margin: auto;">
 
         <div style="background-color: lightgrey; padding: 10px;">
             <b> Information About this Study </b>
@@ -82,12 +82,14 @@
 
 
     <InstructionScreen :title="'Instruction'">
+     <div style="width: 90%; margin: auto;">
 <!-- 
       <p>Please use the "Fullscreen Mode" for the duration of the experiment:
         <a href="javascript:void(0)" @click="turnOnFullScreen">Fullscreen Mode</a>
       </p>
  -->
       <p>In this study, you will read short texts and answer questions about them. However, unlike in normal reading, the texts will be blurred. In order to bring the text into focus move your mouse over it. Take as much time to read the text as you need in order to understand it. When you are done reading, answer the question at the bottom and click “next” to move on.</p>
+    </div>
     </InstructionScreen>
 
     <template v-for="(trial, i) of trials">
@@ -314,8 +316,8 @@ export default {
     cursor: pointer;
     padding-top: 2%;
     padding-bottom: 2%;
-    padding-left: 11%;
-    padding-right: 11%;
+    padding-left: 2%;
+    padding-right: 2%;
   }
   button {
     position: absolute;
@@ -369,8 +371,8 @@ export default {
     font-weight: 450;
     padding-top: 2%;
     padding-bottom: 2%;
-    padding-left: 11%;
-    padding-right: 11%;
+    padding-left: 2%;
+    padding-right: 2%;
   }
 
   * {
